@@ -1,3 +1,5 @@
+export type Prettify<T> = { [K in keyof T]: T[K] } & {};
+
 export interface TarballInputFile {
   /**
    * The contents of the file.
@@ -34,4 +36,16 @@ export interface CreateTarballOptions {
    * The default value is the package version timestamp.
    */
   timestamp: number;
+}
+
+export interface CreateTarballResult<TName extends string> {
+  /**
+   * The tarball data as a Uint8Array.
+   */
+  data: Uint8Array<ArrayBuffer>;
+
+  /**
+   * The name of the tarball.
+   */
+  name: TName;
 }
