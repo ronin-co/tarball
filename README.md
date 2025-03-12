@@ -1,4 +1,4 @@
-# RONIN tarball
+# RONIN Tarball
 
 [![tests](https://img.shields.io/github/actions/workflow/status/ronin-co/tarball/validate.yml?label=tests)](https://github.com/ronin-co/tarball/actions/workflows/validate.yml)
 [![code coverage](https://img.shields.io/codecov/c/github/ronin-co/tarball)](https://codecov.io/github/ronin-co/tarball)
@@ -16,6 +16,7 @@ const files = [
         contents: new Uint8Array(Buffer.from('Hello World')),
     }
 ];
+
 const tarball = createTarball('archive.tar.gz', files);
 //     ^? Uint8Array<ArrayBuffer>
 ```
