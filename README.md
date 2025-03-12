@@ -13,12 +13,12 @@ import { createTarball } from '@ronin/tarball';
 const files = [
   {
     name: 'hello.txt',
-    contents: new Uint8Array(Buffer.from('Hello World')),
+    contents: new Uint8Array(new TextEncoder().encode('Hello World')),
   },
 ];
 
 const tarball = createTarball('archive.tar.gz', files);
-//     ^? Uint8Array<ArrayBuffer>
+//       ^? { name: 'archive.tar.gz', contents: Uint8Array<ArrayBuffer> }
 ```
 
 ## Testing
