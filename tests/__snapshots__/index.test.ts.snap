@@ -1,0 +1,7 @@
+// Bun Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`create a basic tarball 1`] = `"sha512-ZgtIFb/6PHovvz1IGB/8IUHmvQhnJXZcyxwpq365SzJbXGqq5pH1YBzVtMMGlse4ZgVQLRLoHp4NQZNEoblnKQ=="`;
+
+exports[`create an empty tarball 1`] = `"sha512-TbZfkhWIV5aDktJFZIchaMbYctV8kqCHMy2LgGKO0K0tfM0yXRNRvYitFlqim2LXb9MVoZuQSJOc7lcWeL/D1w=="`;
+
+exports[`create an uncompressed tarball 1`] = `"sha512-jvtPc8VlU1HEROsQkjDFVtOeLHYk6cEavJ4/tLm5JUIYzFCFtFSpaY0IXPqSGYSR8HpyO+RXStxwYXtz6wtkYQ=="`;

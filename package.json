@@ -1,0 +1,48 @@
+{
+  "name": "@ronin/tarball",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Generate a tarball file in-memory",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ronin-co/tarball"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "lint": "bun run --bun lint:tsc && bun run --bun lint:biome",
+    "lint:biome": "biome check --error-on-warnings",
+    "lint:tsc": "tsc --pretty",
+    "format": "biome check --write && biome format --write",
+    "test": "bun test",
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "prepare": "bun run build"
+  },
+  "keywords": [
+    "archive",
+    "gzip",
+    "tar",
+    "tarball",
+    "ts",
+    "typescript"
+  ],
+  "author": "ronin",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "gzip-js": "0.3.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@types/bun": "1.2.4",
+    "@types/gzip-js": "0.3.5",
+    "tsup": "8.4.0",
+    "typescript": "5.7.3"
+  }
+}
