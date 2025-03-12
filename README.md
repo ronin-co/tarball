@@ -4,7 +4,7 @@
 [![code coverage](https://img.shields.io/codecov/c/github/ronin-co/tarball)](https://codecov.io/github/ronin-co/tarball)
 [![install size](https://packagephobia.com/badge?p=@ronin/tarball)](https://packagephobia.com/result?p=@ronin/tarball)
 
-This package generates a, optionally g-zip compressed, tarball file in-memory.
+This package generates a tarball file in-memory, with the ability to compress it using gzip.
 
 ## Usage
 ```typescript
