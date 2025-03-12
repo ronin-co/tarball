@@ -11,10 +11,10 @@ This package generates a tarball file in-memory, with the ability to compress it
 import { createTarball } from '@ronin/tarball';
 
 const files = [
-    {
-        name: 'hello.txt',
-        contents: new Uint8Array(Buffer.from('Hello World')),
-    }
+  {
+    name: 'hello.txt',
+    contents: new Uint8Array(Buffer.from('Hello World')),
+  },
 ];
 
 const tarball = createTarball('archive.tar.gz', files);
