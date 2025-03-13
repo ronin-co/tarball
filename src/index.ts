@@ -8,6 +8,8 @@ import type {
   TarballInputFile,
 } from '@/src/types';
 
+export type { TarballInputFile } from '@/src/types';
+
 /**
  * Create a tarball from a list of files
  *
