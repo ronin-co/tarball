@@ -18,7 +18,7 @@ const files = [
 ];
 
 const tarball = createTarball('archive.tar.gz', files);
-//       ^? { name: 'archive.tar.gz', contents: Uint8Array<ArrayBuffer> }
+//       ^? { name: 'archive.tar.gz', data: Uint8Array<ArrayBuffer> }
 ```
 
 ## Testing
