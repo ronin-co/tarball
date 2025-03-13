@@ -11,11 +11,11 @@ import type {
 export type { TarballInputFile } from '@/src/types';
 
 /**
- * Create a tarball from a list of files
+ * Create a tarball from a list of files.
  *
- * @param name - The name of the tarball
- * @param files - The list of files to include in the tarball
- * @param [options] - The options for creating the tarball
+ * @param name - The name of the tarball.
+ * @param files - The list of files to include in the tarball.
+ * @param [options] - The options for creating the tarball.
  *
  * @returns An object containing the tarball data and file name.
  */
