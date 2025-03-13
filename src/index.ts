@@ -1,7 +1,12 @@
 import { buildHeaderRecord, calculateTarballByteLength } from '@/src/utils';
 import { zip as gzip } from 'gzip-js';
 
-import type { CreateTarballOptions, TarballInputFile } from '@/src/types';
+import type {
+  CreateTarballOptions,
+  CreateTarballResult,
+  Prettify,
+  TarballInputFile,
+} from '@/src/types';
 
 export type { TarballInputFile } from '@/src/types';
 
@@ -12,13 +17,16 @@ export type { TarballInputFile } from '@/src/types';
  * @param files - The list of files to include in the tarball
  * @param [options] - The options for creating the tarball
  *
- * @returns The tarball as a Uint8Array
+ * @returns An object containing the tarball data and file name.
  */
-export const createTarball = <T extends Array<TarballInputFile>>(
-  name: string,
-  files: T,
+export const createTarball = <
+  TName extends string,
+  TFiles extends Array<TarballInputFile>,
+>(
+  name: TName,
+  files: TFiles,
   options?: CreateTarballOptions,
-): Uint8Array<ArrayBuffer> => {
+): Prettify<CreateTarballResult<TName>> => {
   const { compress = true, timestamp } = options ?? {};
 
   const tarballByteLength = calculateTarballByteLength(files);
@@ -37,8 +45,15 @@ export const createTarball = <T extends Array<TarballInputFile>>(
       name,
       timestamp,
     });
-    return new Uint8Array(gzipTarball);
+
+    return {
+      name,
+      data: new Uint8Array(gzipTarball),
+    };
   }
 
-  return tarballByteArr;
+  return {
+    name,
+    data: tarballByteArr,
+  };
 };

@@ -38,8 +38,9 @@ describe('create', () => {
         timestamp: CREATED_AT_TIMESTAMP,
       },
     );
-    const tarballHash = await getIntegrityHash(tarball);
+    expect(tarball.name).toStrictEqual('basic.tar.gz');
 
+    const tarballHash = await getIntegrityHash(tarball.data);
     expect(tarballHash).toMatchSnapshot();
   });
 
@@ -47,18 +48,20 @@ describe('create', () => {
     const tarball = createTarball('empty.tar.gz', [], {
       timestamp: CREATED_AT_TIMESTAMP,
     });
-    const tarballHash = await getIntegrityHash(tarball);
+    expect(tarball.name).toStrictEqual('empty.tar.gz');
 
+    const tarballHash = await getIntegrityHash(tarball.data);
     expect(tarballHash).toMatchSnapshot();
   });
 
   test('an uncompressed tarball', async () => {
-    const tarball = createTarball('basic.tar.gz', [], {
+    const tarball = createTarball('uncompressed.tar', [], {
       compress: false,
       timestamp: CREATED_AT_TIMESTAMP,
     });
-    const tarballHash = await getIntegrityHash(tarball);
+    expect(tarball.name).toStrictEqual('uncompressed.tar');
 
+    const tarballHash = await getIntegrityHash(tarball.data);
     expect(tarballHash).toMatchSnapshot();
   });
 });
