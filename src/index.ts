@@ -3,6 +3,8 @@ import { zip as gzip } from 'gzip-js';
 
 import type { CreateTarballOptions, TarballInputFile } from '@/src/types';
 
+export type { TarballInputFile } from '@/src/types';
+
 /**
  * Create a tarball from a list of files
  *
