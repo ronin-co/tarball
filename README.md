@@ -13,7 +13,7 @@ import { createTarball } from '@ronin/tarball';
 const files = [
   {
     name: 'hello.txt',
-    contents: new Uint8Array(new TextEncoder().encode('Hello World')),
+    contents: new TextEncoder().encode('Hello World'),
   },
 ];
 
