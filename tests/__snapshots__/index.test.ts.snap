@@ -7,3 +7,5 @@ exports[`create an empty tarball 1`] = `"sha512-TbZfkhWIV5aDktJFZIchaMbYctV8kqCH
 exports[`create an uncompressed tarball 1`] = `"sha512-jvtPc8VlU1HEROsQkjDFVtOeLHYk6cEavJ4/tLm5JUIYzFCFtFSpaY0IXPqSGYSR8HpyO+RXStxwYXtz6wtkYQ=="`;
 
 exports[`create a basic npm package 1`] = `"sha512-OpWTBou59cdxmAVJKUAUAwmVE8Gqv3zcQ7oqt8WjbCVAYg5q0UrMAYfLzGclxQji6Ui26A2Csj94v7UTsw8aSg=="`;
+
+exports[`create an empty name 1`] = `"sha512-Qmaw8wcsenf2c+JhSrFrii4mLt5srb1q26Slrw3xp3ZEYuBENcTHlN1a5ixXDZZ/ZhM6gwS8qmOQKFTJkIWTmQ=="`;

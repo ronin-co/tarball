@@ -84,6 +84,16 @@ describe('create', () => {
     expect(tarballHash).toMatchSnapshot();
   });
 
+  test('an empty name', async () => {
+    const tarball = createTarball([], {
+      timestamp: CREATED_AT_TIMESTAMP,
+    });
+    expect(tarball.name).toStrictEqual(null);
+
+    const tarballHash = await getIntegrityHash(tarball.data);
+    expect(tarballHash).toMatchSnapshot();
+  });
+
   test('an empty tarball', async () => {
     const tarball = createTarball([], {
       name: 'empty.tar.gz',
