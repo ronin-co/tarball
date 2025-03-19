@@ -24,13 +24,15 @@ const getIntegrityHash = async (
 // the integrity hash remains consistent across test runs.
 const CREATED_AT_TIMESTAMP = new Date('2025-01-01T00:00:00.000Z').getTime();
 
+const encoder = new TextEncoder();
+
 describe('create', () => {
   test('a basic tarball', async () => {
     const tarball = createTarball(
       [
         {
           name: 'hello-world.txt',
-          contents: new Uint8Array(Buffer.from('Hello, world!', 'utf-8')),
+          contents: encoder.encode('Hello, world!'),
         },
       ],
       {
@@ -39,6 +41,44 @@ describe('create', () => {
       },
     );
     expect(tarball.name).toStrictEqual('basic.tar.gz');
+
+    const tarballHash = await getIntegrityHash(tarball.data);
+    expect(tarballHash).toMatchSnapshot();
+  });
+
+  test('a basic npm package', async () => {
+    const tarball = createTarball(
+      [
+        {
+          name: 'package/package.json',
+          contents: encoder.encode(
+            JSON.stringify({
+              private: true,
+              name: '@ronin/example',
+              version: '0.0.0',
+              main: 'index.js',
+              types: 'index.d.ts',
+            }),
+          ),
+        },
+        {
+          name: 'package/index.js',
+          contents: encoder.encode('export const add = (a, b) => a + b;'),
+        },
+        {
+          name: 'package/index.d.ts',
+          contents: encoder.encode(
+            `declare const add: (a: number, b: number) => number;
+            export { add };`,
+          ),
+        },
+      ],
+      {
+        name: 'package.tar.gz',
+        timestamp: CREATED_AT_TIMESTAMP,
+      },
+    );
+    expect(tarball.name).toStrictEqual('package.tar.gz');
 
     const tarballHash = await getIntegrityHash(tarball.data);
     expect(tarballHash).toMatchSnapshot();
