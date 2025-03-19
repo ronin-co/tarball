@@ -20,14 +20,13 @@ export type { TarballInputFile } from '@/src/types';
  * @returns An object containing the tarball data and file name.
  */
 export const createTarball = <
-  TName extends string,
   TFiles extends Array<TarballInputFile>,
+  TName extends string | null = null,
 >(
-  name: TName,
   files: TFiles,
-  options?: CreateTarballOptions,
+  options?: CreateTarballOptions<TName>,
 ): Prettify<CreateTarballResult<TName>> => {
-  const { compress = true, timestamp } = options ?? {};
+  const { compress = true, name = null, timestamp } = options ?? {};
 
   const tarballByteLength = calculateTarballByteLength(files);
   const tarballByteArr = new Uint8Array(tarballByteLength);
@@ -40,20 +39,19 @@ export const createTarball = <
     offset += Math.ceil(file.contents.byteLength / 512) * 512 + 512;
   }
 
-  if (compress) {
-    const gzipTarball = gzip(tarballByteArr, {
-      name,
-      timestamp,
-    });
-
+  if (!compress)
     return {
-      name,
-      data: new Uint8Array(gzipTarball),
+      data: tarballByteArr,
+      name: name as TName,
     };
-  }
+
+  const gzipTarball = gzip(tarballByteArr, {
+    name: name ?? undefined,
+    timestamp,
+  });
 
   return {
-    name,
-    data: tarballByteArr,
+    data: new Uint8Array(gzipTarball),
+    name: name as TName,
   };
 };

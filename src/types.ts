@@ -19,13 +19,20 @@ export interface TarballInputFile {
   lastModifiedAt?: Date;
 }
 
-export interface CreateTarballOptions {
+export interface CreateTarballOptions<TName extends string | null> {
   /**
    * Whether to compress the tarball using gzip or not
    *
    * @default true
    */
   compress?: boolean;
+
+  /**
+   * The name of the tarball.
+   *
+   * This property is primarily used for gzip compression.
+   */
+  name?: TName;
 
   /**
    * The timestamp at which the tarball was created.
@@ -35,10 +42,10 @@ export interface CreateTarballOptions {
    *
    * The default value is the package version timestamp.
    */
-  timestamp: number;
+  timestamp?: number;
 }
 
-export interface CreateTarballResult<TName extends string> {
+export interface CreateTarballResult<TName extends string | null> {
   /**
    * The tarball data as a Uint8Array.
    */
