@@ -27,7 +27,6 @@ const CREATED_AT_TIMESTAMP = new Date('2025-01-01T00:00:00.000Z').getTime();
 describe('create', () => {
   test('a basic tarball', async () => {
     const tarball = createTarball(
-      'basic.tar.gz',
       [
         {
           name: 'hello-world.txt',
@@ -35,6 +34,7 @@ describe('create', () => {
         },
       ],
       {
+        name: 'basic.tar.gz',
         timestamp: CREATED_AT_TIMESTAMP,
       },
     );
@@ -45,7 +45,8 @@ describe('create', () => {
   });
 
   test('an empty tarball', async () => {
-    const tarball = createTarball('empty.tar.gz', [], {
+    const tarball = createTarball([], {
+      name: 'empty.tar.gz',
       timestamp: CREATED_AT_TIMESTAMP,
     });
     expect(tarball.name).toStrictEqual('empty.tar.gz');
@@ -55,8 +56,9 @@ describe('create', () => {
   });
 
   test('an uncompressed tarball', async () => {
-    const tarball = createTarball('uncompressed.tar', [], {
+    const tarball = createTarball([], {
       compress: false,
+      name: 'uncompressed.tar',
       timestamp: CREATED_AT_TIMESTAMP,
     });
     expect(tarball.name).toStrictEqual('uncompressed.tar');
