@@ -7,6 +7,7 @@
 This package generates a tarball file in-memory, with the ability to compress it using gzip.
 
 ## Usage
+
 ```typescript
 import { createTarball } from '@ronin/tarball';
 
@@ -17,8 +18,8 @@ const files = [
   },
 ];
 
-const tarball = createTarball('archive.tar.gz', files);
-//       ^? { name: 'archive.tar.gz', data: Uint8Array<ArrayBuffer> }
+const tarball = createTarball(files);
+//       ^? { name: null, data: Uint8Array<ArrayBuffer> }
 ```
 
 ## Testing
